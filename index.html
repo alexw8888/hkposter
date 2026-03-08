@@ -76,28 +76,103 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     }
 
-    /* LEFT PANEL */
-    .left-panel {
+    /* LEFT COLUMN */
+    .left-col {
       flex: 1.1;
-      padding: 16px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .fade-panel {
+      background: linear-gradient(90deg, 
+        rgba(255, 253, 235, 0) 0%, 
+        rgba(255, 253, 235, 0.8) 15%, 
+        rgba(255, 253, 235, 0.8) 85%, 
+        rgba(255, 253, 235, 0) 100%
+      );
+    }
+
+    .info-block-panel {
+      padding: 16px 20px;
+    }
+
+    .info-block-panel.row-style {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .info-block-panel.col-style {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 4px;
     }
 
     .info-label {
-      font-size: 13px;
-      color: #7a5f30;
+      font-size: 18px;
+      font-weight: 700;
+      color: #382414;
       text-align: center;
-      font-style: italic;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
+      letter-spacing: 1px;
     }
 
-    .info-row {
+    .text-col {
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
     }
 
-    .info-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+    .loc-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .info-icon { font-size: 32px; flex-shrink: 0; }
+    .info-icon.large { font-size: 50px; }
+
+    /* Custom CSS Calendar Icon */
+    .custom-cal {
+      width: 50px;
+      height: 54px;
+      background: #fcfcfc;
+      border-radius: 6px;
+      border: 2px solid #382414;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 2px 3px 0 rgba(56,36,20,0.2);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .custom-cal .cal-month {
+      background: #e24e4e;
+      width: 100%;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      padding: 3px 0 2px;
+      border-bottom: 2px solid #382414;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .custom-cal .cal-day {
+      font-size: 24px;
+      font-weight: 900;
+      color: #382414;
+      margin-top: 5px;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+    }
 
     .info-text {
       font-family: 'Hannotate TC', sans-serif;
@@ -108,9 +183,6 @@
     .info-text.xl { font-size: 28px; }
     .info-text.lg { font-size: 22px; }
     .info-text.md { font-size: 17px; }
-
-    .info-block { margin-bottom: 22px; }
-    .info-block:last-child { margin-bottom: 0; }
 
     hr.div {
       display: none;
@@ -124,7 +196,7 @@
 
     .purpose-title {
       font-family: 'Hannotate TC', sans-serif;
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 900;
       color: #1a0f00;
       text-align: center;
@@ -137,22 +209,17 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-
-    .purpose-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px; /* increased gap */
+      align-items: center;
+      gap: 12px;
       padding-top: 5px;
     }
     .purpose-list li {
       display: flex;
       align-items: center;
-      gap: 14px; /* increased gap */
+      justify-content: center;
+      gap: 14px;
       font-family: 'Hannotate TC', sans-serif;
-      font-size: 22px; /* slightly larger */
+      font-size: 26px;
       font-weight: 700;
       color: #1c1000;
     }
@@ -255,40 +322,39 @@
 
       <!-- Two info panels -->
       <div class="middle-row">
-        <!-- Left panel -->
-        <div class="panel left-panel">
-          <div class="info-block">
-            <div class="info-label">～日期～</div>
-            <div class="info-row">
-              <span class="info-icon">📅</span>
-              <span class="info-text xl">2026年3月29日</span>
+        <!-- Left column -->
+        <div class="left-col">
+          <div class="fade-panel info-block-panel row-style">
+            <div class="custom-cal">
+              <div class="cal-month">3月</div>
+              <div class="cal-day">29</div>
+            </div>
+            <div class="text-col">
+              <div class="info-label">～日期～</div>
+              <div class="info-text xl">2026年3月29日</div>
             </div>
           </div>
 
-
-          <div class="info-block">
-            <div class="info-label">～時間～</div>
-            <div class="info-row">
-              <span class="info-icon">🕐</span>
-              <span class="info-text xl">2:30pm</span>
+          <div class="fade-panel info-block-panel row-style">
+            <span class="info-icon large">🕐</span>
+            <div class="text-col">
+              <div class="info-label">～時間～</div>
+              <div class="info-text xl">2:30pm</div>
             </div>
           </div>
 
-
-          <div class="info-block">
-            <div class="info-label">～地點～</div>
-            <div class="info-row">
+          <div class="fade-panel info-block-panel col-style">
+            <div class="loc-header">
               <span class="info-icon">📍</span>
-              <div>
-                <div class="info-text lg">Loft 二樓 CityReach Care Society</div>
-                <div class="info-text md">2650 Slocan St, Vancouver, BC</div>
-              </div>
+              <div class="info-label loc-label">～地點～</div>
             </div>
+            <div class="info-text lg">Loft 二樓 CityReach Care Society</div>
+            <div class="info-text md">2650 Slocan St, Vancouver, BC</div>
           </div>
         </div>
 
         <!-- Right panel -->
-        <div class="panel right-panel">
+        <div class="fade-panel right-panel">
           <div class="purpose-title">～聚會主旨～</div>
           <ul class="purpose-list">
             <li><span class="p-icon">🇭🇰</span>同香港人</li>
