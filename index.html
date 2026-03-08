@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>記掛你呀，香港人！</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #1a1a2e;
+      font-family: 'Hannotate TC', sans-serif;
+      padding: 24px;
+    }
+
+    /* ===== POSTER WRAPPER ===== */
+    .poster {
+      position: relative;
+      width: 1200px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.7);
+    }
+
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background: url('assets/background_landscape.png') center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== TITLE ===== */
+    .title-bar {
+      text-align: center;
+      padding: 24px 30px 0;
+    }
+
+    .title-bar h1 {
+      font-family: 'Hannotate TC', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: #fce3a7;
+      /* Simulating outline with text-shadow to avoid path overlap artifacts common in variable fonts */
+      text-shadow: 
+        -1.5px -1.5px 0 #382414,  
+         1.5px -1.5px 0 #382414,
+        -1.5px  1.5px 0 #382414,
+         1.5px  1.5px 0 #382414,
+         2px 4px 8px rgba(0,0,0,0.6);
+      letter-spacing: 4px; /* Reduced tracking for a tighter appearance */
+    }
+
+    /* ===== MIDDLE ===== */
+    .middle-row {
+      display: flex;
+      gap: 16px;
+      /* Increased top padding from 14px to 64px to add more space under the title */
+      padding: 100px 18px 12px;
+    }
+
+    .panel {
+      background: rgba(255, 253, 235, 0.7);
+      border-radius: 14px;
+      border: 2px solid rgba(200, 180, 130, 0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      flex: 1.1;
+      padding: 16px 22px 18px;
+    }
+
+    .info-label {
+      font-size: 13px;
+      color: #7a5f30;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .info-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+
+    .info-text {
+      font-family: 'Hannotate TC', sans-serif;
+      font-weight: 700;
+      color: #1a0f00;
+      line-height: 1.3;
+    }
+    .info-text.xl { font-size: 28px; }
+    .info-text.lg { font-size: 22px; }
+    .info-text.md { font-size: 17px; }
+
+    .info-block { margin-bottom: 22px; }
+    .info-block:last-child { margin-bottom: 0; }
+
+    hr.div {
+      display: none;
+    }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      flex: 1;
+      padding: 16px 22px 18px;
+    }
+
+    .purpose-title {
+      font-family: 'Hannotate TC', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: #1a0f00;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .purpose-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .purpose-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px; /* increased gap */
+      padding-top: 5px;
+    }
+    .purpose-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px; /* increased gap */
+      font-family: 'Hannotate TC', sans-serif;
+      font-size: 22px; /* slightly larger */
+      font-weight: 700;
+      color: #1c1000;
+    }
+
+    .p-icon { font-size: 20px; width: 26px; text-align: center; }
+
+
+
+    /* ===== DARK BAND ===== */
+    .content-band-wrap {
+      padding: 10px 24px 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .content-band {
+      background: rgba(18, 30, 60, 0.85);
+      padding: 14px 30px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .content-band-text {
+      font-family: 'Hannotate TC', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #f7eed7;
+      letter-spacing: 5px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 10px 30px;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(5px);
+    }
+
+    .org-label {
+      font-size: 14px;
+      color: #6b5230;
+      font-style: italic;
+      letter-spacing: 2px;
+    }
+
+    .vline {
+      width: 1.5px;
+      height: 38px;
+      background: rgba(100,80,50,0.3);
+    }
+
+    .cm-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cm-text {
+      font-family: 'Hannotate TC', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a0f00;
+      line-height: 1.2;
+    }
+
+    .cm-text .en {
+      font-size: 11px;
+      font-weight: 400;
+      color: #666;
+      display: block;
+    }
+
+    /* Broadway Church logo */
+    .broadway {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .broadway img {
+      height: 40px; /* Adjust this height as needed to fit the footer */
+      width: auto;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <div class="bg-image"></div>
+
+    <div class="content">
+      <!-- Title -->
+      <div class="title-bar">
+        <h1>記掛你呀，香港人！</h1>
+      </div>
+
+      <!-- Two info panels -->
+      <div class="middle-row">
+        <!-- Left panel -->
+        <div class="panel left-panel">
+          <div class="info-block">
+            <div class="info-label">～日期～</div>
+            <div class="info-row">
+              <span class="info-icon">📅</span>
+              <span class="info-text xl">2026年3月29日</span>
+            </div>
+          </div>
+
+
+          <div class="info-block">
+            <div class="info-label">～時間～</div>
+            <div class="info-row">
+              <span class="info-icon">🕐</span>
+              <span class="info-text xl">2:30pm</span>
+            </div>
+          </div>
+
+
+          <div class="info-block">
+            <div class="info-label">～地點～</div>
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <div>
+                <div class="info-text lg">Loft 二樓 CityReach Care Society</div>
+                <div class="info-text md">2650 Slocan St, Vancouver, BC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="panel right-panel">
+          <div class="purpose-title">～聚會主旨～</div>
+          <ul class="purpose-list">
+            <li><span class="p-icon">🇭🇰</span>同香港人</li>
+            <li><span class="p-icon">🤝</span>互相認識</li>
+            <li><span class="p-icon">🫂</span>分擔重擔</li>
+            <li><span class="p-icon">🧑‍🤝‍🧑</span>共同體驗</li>
+            <li><span class="p-icon">👥</span>共同等待</li>
+            <li><span class="p-icon">🧭</span>同行 + 守望</li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <!-- Dark content band -->
+      <div class="content-band-wrap">
+        <div class="content-band">
+          <span class="content-band-text">內容：破冰，祈禱，分組</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="org-label">～主辦單位～</div>
+                <div class="cm-wrap">
+          <div class="cm-text">
+            中文事工
+            <span class="en">Chinese Ministry</span>
+          </div>
+        </div>
+                <div class="broadway">
+          <img src="assets/broadway_logo.png" alt="Broadway Church Logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
