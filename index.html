@@ -21,6 +21,7 @@
     .poster {
       position: relative;
       width: 1200px;
+      aspect-ratio: 1 / 1.4142;
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 24px 70px rgba(0,0,0,0.7);
@@ -29,7 +30,7 @@
     .bg-image {
       position: absolute;
       inset: 0;
-      background: url('assets/background_landscape.png') center center / cover no-repeat;
+      background: url('assets/bg_portrait.png') center center / cover no-repeat;
       z-index: 0;
     }
 
@@ -38,17 +39,18 @@
       z-index: 2;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     /* ===== TITLE ===== */
     .title-bar {
       text-align: center;
-      padding: 24px 30px 0;
+      padding: 60px 30px 0;
     }
 
     .title-bar h1 {
       font-family: 'Hannotate TC', sans-serif;
-      font-size: 64px;
+      font-size: 72px;
       font-weight: 700;
       color: #fce3a7;
       /* Simulating outline with text-shadow to avoid path overlap artifacts common in variable fonts */
@@ -64,9 +66,9 @@
     /* ===== MIDDLE ===== */
     .middle-row {
       display: flex;
-      gap: 16px;
-      /* Increased top padding from 14px to 64px to add more space under the title */
-      padding: 100px 18px 12px;
+      gap: 24px;
+      margin-top: auto;
+      padding: 40px 40px 20px;
     }
 
     .panel {
@@ -233,6 +235,8 @@
       padding: 10px 24px 20px;
       position: relative;
       z-index: 5;
+      display: flex;
+      justify-content: center;
     }
 
     .content-band {
