@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>記掛你呀，香港人！</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Allura';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/Allura-Regular.ttf') format('truetype');
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -356,7 +360,7 @@
     .save-btn:active { transform: translateY(1px); }
     .save-btn:disabled { opacity: 0.6; cursor: wait; }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3/dist/dom-to-image-more.min.js"></script>
 </head>
 <body>
   <div class="poster">
@@ -450,17 +454,14 @@
 
       try {
         const poster = document.querySelector('.poster');
-        const canvas = await html2canvas(poster, {
-          scale: 1,
-          useCORS: true,
-          backgroundColor: null,
+        const dataUrl = await domtoimage.toPng(poster, {
           width: 1696,
           height: 2384,
         });
 
         const link = document.createElement('a');
         link.download = 'poster_hi_res.png';
-        link.href = canvas.toDataURL('image/png');
+        link.href = dataUrl;
         link.click();
       } catch (err) {
         alert('Save failed: ' + err.message);
