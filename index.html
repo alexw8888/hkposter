@@ -49,14 +49,14 @@
     /* ===== TITLE ===== */
     .title-bar {
       text-align: center;
-      padding: calc(15 * var(--r)) calc(30 * var(--r)) 0;
+      padding: calc(125 * var(--r)) calc(30 * var(--r)) 0;
     }
 
     .title-bar h1 {
       font-family: 'Hannotate TC', sans-serif;
       font-size: calc(72 * var(--r));
       font-weight: 700;
-      color: #c4b5fd;
+      color: #7e18ca;
       /* Simulating outline with text-shadow to avoid path overlap artifacts common in variable fonts */
       text-shadow: 
         calc(-1.5 * var(--r)) calc(-1.5 * var(--r)) 0 #382414,  
@@ -241,10 +241,11 @@
       z-index: 5;
       display: flex;
       justify-content: center;
+      transform: translateY(calc(-20 * var(--r)));
     }
 
     .content-band {
-      background: #323aa8;
+      background: #ff0000;
       padding: calc(14 * var(--r)) calc(30 * var(--r));
       text-align: center;
       border-radius: calc(12 * var(--r));
@@ -271,7 +272,7 @@
     }
 
     .org-label {
-      font-size: calc(14 * var(--r));
+      font-size: calc(20 * var(--r));
       color: #6b5230;
       font-style: italic;
       letter-spacing: calc(2 * var(--r));
@@ -291,14 +292,14 @@
 
     .cm-text {
       font-family: 'Hannotate TC', sans-serif;
-      font-size: calc(17 * var(--r));
+      font-size: calc(24 * var(--r));
       font-weight: 700;
       color: #1a0f00;
       line-height: 1.2;
     }
 
     .cm-text .en {
-      font-size: calc(11 * var(--r));
+      font-size: calc(15 * var(--r));
       font-weight: 400;
       color: #666;
       display: block;
@@ -312,7 +313,7 @@
     }
     
     .broadway img {
-      height: calc(40 * var(--r)); /* Adjust this height as needed to fit the footer */
+      height: calc(60 * var(--r)); /* Adjust this height as needed to fit the footer */
       width: auto;
       object-fit: contain;
     }
